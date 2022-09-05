@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PortApplication.App">
+    <Application.Resources>
+        <ResourceDictionary x:Name="Dictionary">
+
+            <!-- Colors -->
+            <Color x:Key="PrimaryColor">DodgerBlue</Color>
+            <Color x:Key="SecondaryColor">#FFEDCB</Color>
+            <Color x:Key="Black">#000000</Color>
+
+            <!-- Fonts -->
+            <OnPlatform x:Key="NunitoBold" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Nunito-Bold.ttf" />
+                <On Platform="Android" Value="Nunito-Bold.ttf" />
+            </OnPlatform>
+            
+            <OnPlatform x:Key="NunitoSemiBold" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Nunito-SemiBold.ttf" />
+                <On Platform="Android" Value="Nunito-SemiBold.ttf" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="NunitoRegular" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Nunito-Regular.ttf" />
+                <On Platform="Android" Value="Nunito-Regular.ttf" />
+            </OnPlatform>
+            
+            <!-- Font Sizes -->
+            <OnIdiom x:Key="Medium" x:TypeArguments="x:Double" Default="20" />
+
+            <OnIdiom x:Key="Small" x:TypeArguments="x:Double" Default="16" />
+
+            <!-- Spacing -->
+            <OnPlatform x:Key="SpaceAround" x:TypeArguments="Thickness" Default="16"  />
+
+            <!-- Styles -->
+            <Style TargetType="Label" x:Key="Headline">
+                <Setter Property="FontSize" Value="{StaticResource Medium}" />
+                <Setter Property="FontFamily" Value="{StaticResource NunitoBold}" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="Body">
+                <Setter Property="FontSize" Value="{StaticResource Small}" />
+                <Setter Property="FontFamily" Value="{StaticResource NunitoRegular}" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+            </Style>
+            
+            <!-- Buttons -->
+            <Style TargetType="Button" Class="Round">
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="FontSize" Value="{StaticResource Medium}" />
+                <Setter Property="FontFamily" Value="{StaticResource NunitoSemiBold}" />
+            </Style>
+
+            <!-- Frames -->
+            <Style TargetType="Frame" Class="RoundFrame">
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

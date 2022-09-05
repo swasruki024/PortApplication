@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PortApplication.Views.PortTabletPage"
+             x:Name="TabletPortPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <ScrollView Margin="{StaticResource SpaceAround}">
+            <Grid ColumnDefinitions="5*, 5*" ColumnSpacing="10">
+                
+                <!-- Left side representing list of all ports -->
+                <StackLayout>
+                    <SearchBar TextChanged="SearchBarTextChanged" />
+                    <CollectionView x:Name="PortList" ItemsSource="{Binding Ports}" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Frame StyleClass="RoundFrame">
+                                        <Grid RowDefinitions="Auto, Auto, Auto" 
+                                          ColumnDefinitions="Auto, Auto" 
+                                          RowSpacing="5"
+                                          ColumnSpacing="10">
+                                            <Label Text="Port Name:" 
+                                               Style="{StaticResource Body}" />
+                                            <Label Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding Name}" 
+                                               Style="{StaticResource Body}" />
+                                            <Label Grid.Row="1"
+                                               Grid.Column="0"
+                                               Text="Port Code:" 
+                                               Style="{StaticResource Body}" />
+                                            <Label Grid.Row="1"
+                                               Grid.Column="1" 
+                                               Text="{Binding PortCode}"
+                                               Style="{StaticResource Body}" />
+                                            <Label Grid.Row="2"
+                                               Grid.Column="0"
+                                               Text="Country:" 
+                                               Style="{StaticResource Body}" />
+                                            <Label Grid.Row="2"
+                                               Grid.Column="1" 
+                                               Text="{Binding Country}"
+                                               Style="{StaticResource Body}" />
+                                        </Grid>
+                                    </Frame>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference TabletPortPage}}"
+                                                              CommandParameter="{Binding ID}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                
+                <!-- Right side representing detail of the selected port -->
+                <Grid Grid.Column="1"
+                      IsVisible="{Binding DetailsIsVisible}"
+                      RowDefinitions="200, Auto, Auto, Auto, Auto" 
+                      RowSpacing="15">
+
+                    <Frame Grid.Row="2" StyleClass="RoundFrame">
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                      ColumnDefinitions="Auto, Auto"
+                      ColumnSpacing="15">
+
+                            <Label Text="ID:" 
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding Port.ID}" 
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Port Name:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Port.Name}"
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Port Code:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding Port.PortCode}"
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="3"
+                           Grid.Column="0"
+                           Text="Unctad Port Code:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="3"
+                           Grid.Column="1"
+                           Text="{Binding Port.UnctadPortCode}"
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="4"
+                           Grid.Column="0"
+                           Text="Country:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="4"
+                           Grid.Column="1"
+                           Text="{Binding Port.Country}"
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="5"
+                           Grid.Column="0"
+                           Text="Latitude:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="5"
+                           Grid.Column="1"
+                           Text="{Binding Port.Latitude}"
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="6"
+                           Grid.Column="0"
+                           Text="Longitude:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="6"
+                           Grid.Column="1"
+                           Text="{Binding Port.Longitude}"
+                           Style="{StaticResource Body}" />
+
+                            <Label Grid.Row="7"
+                           Grid.Column="0"
+                           Text="Url:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="7"
+                           Grid.Column="1"
+                           Text="{Binding Port.Url}"
+                           Style="{StaticResource Body}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenMapCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <Label Grid.Row="8"
+                           Grid.Column="0"
+                           Text="Main Port Code:"
+                           Style="{StaticResource Body}" />
+                            <Label Grid.Row="8"
+                           Grid.Column="1"
+                           Text="{Binding Port.MainPortCode}"
+                           Style="{StaticResource Body}" />
+                        </Grid>
+                    </Frame>
+
+                    <Button Grid.Row="3"
+                    Text="Share Port"
+                    StyleClass="Round"                    
+                    Command="{Binding SharePortCommand}" />
+
+                    <Button Grid.Row="4"
+                    Text="Open Map"
+                    StyleClass="Round" 
+                    Command="{Binding OpenMapCommand}" />
+                </Grid>
+
+            </Grid>
+        </ScrollView> 
+    </ContentPage.Content>
+</ContentPage>
